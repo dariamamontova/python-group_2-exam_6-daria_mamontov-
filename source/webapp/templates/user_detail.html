@@ -1,17 +1,23 @@
 {% extends 'base.html' %}
-{% block title %}Блюдо{% endblock %}
+{% block title %}Пользователь{% endblock %}
 {% block content %}
     <div class="m-3">
-    <img src="{{ user.picture }}" class="rounded " alt="Фото">
+    <p><a class="btn btn-dark mb-5 float-right" href="{% url 'webapp:user_update' userinfo.pk %}">Изменить пользователя</a></p>
+    <img src="{{ user.user_info.picture.url }}" class="rounded img-thumbnail img-fluid" alt="Фото">
+        <p>Логин: {{ user.username }}</p>
         <p>Имя: {{ user.first_name }}</p>
         <p>Фамилия: {{ user.last_name }}</p>
-        <p>E-mail: {{ user.phone }}</p>
+        <p>E-mail: {{ user.email }}</p>
+        <p>Phone: {{ user.user_info.phone }}</p>
         <hr>
-    <p>Друзья:</p>
-    {% for friend in user.friend.all %}
-        <p>{{ friend.first_name }} ({{ friend.last_name }})</p>
+    <h5>Друзья:</h5>
+    {% for friend in user.user_info.friend.all %}
+        <p>{{ friend.user.first_name }} {{ friend.user.last_name }}</p>
     {% endfor %}
-    <h5>Посты</h5>
-
+        <hr>
+    <h5>Посты:</h5>
+    {% for post in user.user_info.post_author.all %}
+        <p><a href="{% url 'webapp:post_detail' post.pk %}">{{ post.title }}</a></p>
+    {% endfor %}
     </div>
 {% endblock %}

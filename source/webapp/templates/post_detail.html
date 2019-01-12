@@ -2,14 +2,12 @@
 {% block title %}Пост{% endblock %}
 {% block content %}
     <div class="m-3">
-        <p>{{ post.title }}</p>
+        <h4>{{ post.title }}</h4>
         <p>Автор: {{ post.author }}</p>
         <p>Дата: {{ post.date }}</p>
     <p>{{ post.text }}</p>
-        {% if perms.webapp.delete_post %}
+        {% if post.author == self.request.user %}
             <a class="btn btn-dark" href="{% url 'webapp:post_delete' post.pk %}">Удалить пост</a>
-        {% endif %}
-        {% if perms.webapp.change_orderfood %}
             <a class="btn btn-dark" href="{% url 'webapp:post_update' post.pk %}">Изменить пост</a>
         {% endif %}
     </div>
