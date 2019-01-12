@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Блюдо{% endblock %}
+{% block content %}
+    <div class="m-3">
+    <img src="{{ user.picture }}" class="rounded " alt="Фото">
+        <p>Имя: {{ user.first_name }}</p>
+        <p>Фамилия: {{ user.last_name }}</p>
+        <p>E-mail: {{ user.phone }}</p>
+        <hr>
+    <p>Друзья:</p>
+    {% for friend in user.friend.all %}
+        <p>{{ friend.first_name }} ({{ friend.last_name }})</p>
+    {% endfor %}
+    <h5>Посты</h5>
+
+    </div>
+{% endblock %}

@@ -22,3 +22,26 @@ class PostCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('webapp:post_detail', kwargs={'pk': self.object.pk})
+
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = 'post_update.html'
+    form_class = PostForm
+
+    def get_success_url(self):
+        return reverse('webapp:post_detail', kwargs={'pk': self.object.pk})
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+
+    def get_success_url(self):
+        return reverse('webapp:post_list')
+
+class UserListView(ListView):
+    model = User
+    template_name = 'user_list.html'
+
+class UserDetailView(DeleteView):
+    model = User
+    template_name = 'user_detail.html'

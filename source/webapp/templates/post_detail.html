@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}Блюдо{% endblock %}
+{% block title %}Пост{% endblock %}
 {% block content %}
     <div class="m-3">
         <p>{{ post.title }}</p>
         <p>Автор: {{ post.author }}</p>
         <p>Дата: {{ post.date }}</p>
     <p>{{ post.text }}</p>
-{#        {% if perms.webapp.delete_orderfood %}#}
-{#            <a class="btn btn-dark" href="{% url 'webapp:food_delete' food.pk %}">Удалить блюдо</a>#}
-{#        {% endif %}#}
-{#        {% if perms.webapp.change_orderfood %}#}
-{#            <a class="btn btn-dark" href="{% url 'webapp:food_update' food.pk %}">Изменить блюдо</a>#}
-{#        {% endif %}#}
+        {% if perms.webapp.delete_post %}
+            <a class="btn btn-dark" href="{% url 'webapp:post_delete' post.pk %}">Удалить пост</a>
+        {% endif %}
+        {% if perms.webapp.change_orderfood %}
+            <a class="btn btn-dark" href="{% url 'webapp:post_update' post.pk %}">Изменить пост</a>
+        {% endif %}
     </div>
 {% endblock %}
