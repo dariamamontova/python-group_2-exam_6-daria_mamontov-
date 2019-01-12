@@ -13,7 +13,7 @@ class UserInfo(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
     text = models.TextField(max_length=2000, verbose_name='Текст')
-    date = models.DateField(verbose_name='Дата')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     author = models.ForeignKey(UserInfo, on_delete=models.PROTECT, related_name='post_author', verbose_name='Автор')
 
     def __str__(self):
